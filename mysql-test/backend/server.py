@@ -2,7 +2,7 @@ from flask import Flask, request, Blueprint, jsonify, session
 from flask.sessions import SecureCookieSessionInterface
 from flask_cors import CORS
 from flask_session import Session
-from ..modules.conn import createUsers
+from .modules.conn import createUsers
 
 app = Flask(__name__)
 app.secret_key = "#@*(!#fdsfjkl;j)"
