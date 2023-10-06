@@ -1,0 +1,6 @@
+flask
+flask_cors
+modbus_tk
+redis
+mysql-connector-python
+eventlet
