@@ -1,6 +1,6 @@
 from typing import Any
 from mysql import connector
-from config import Sqlstuff
+from app.config import Sqlstuff
 
 def getConn() -> Any:
     return connector.connect(
@@ -11,6 +11,13 @@ def getConn() -> Any:
     )
 
 def createUsers(sqlQuery) -> Any:
+    conn = getConn()
+    cursor = conn.cursor()
+    cursor.execute(sqlQuery)
+    conn.commit()
+    conn.close()
+
+def selectUsers(sqlQuery) -> Any:
     conn = getConn()
     cursor = conn.cursor()
     cursor.execute(sqlQuery)

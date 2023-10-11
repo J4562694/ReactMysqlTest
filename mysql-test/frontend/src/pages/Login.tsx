@@ -3,7 +3,7 @@ import { APIURL } from './components/apiUrl'
 
 const Login = () => {
 
-    // catch account and password
+    // 抓取帳號與密碼
     const [setAccount, addAccountHandle] = useState("")
     const [setPassword, addPasswordHandle] = useState("")
 
@@ -31,11 +31,13 @@ const Login = () => {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify({ password: setPassword }),
+            body: JSON.stringify({ 
+                account: setAccount,
+                password: setPassword }),
         })
             .then(response => {
                 if (response.status === 201) {
-                    console.log("登入成功!")
+                    alert("登入成功!")
                 }
             })
             .catch(error => console.log(error))
@@ -55,8 +57,24 @@ const Login = () => {
             return
         }
 
-        
+        fetch(`${APIURL}/create`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                account: setCreateAccount,
+                password: setCreatePassword
+            }),
+        })
 
+            .then(response => {
+                if (response.status === 201) {
+                    alert("創建帳戶成功!")
+                }
+            })
+            .catch(error => console.log(error))
     }
 
     return (
